@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d1b2a">
+    <title>CampusConnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.min.css" media="all">
+</head>
+<body>
+
+<header class="portal-header">
+    <div class="brand">
+        <img src="assets/images/psu.png" alt="Campus logo" width="56" height="56">
+        <div>
+            <p class="eyebrow">CampusConnect Portal</p>
+            <h1>Mobile-ready student workspace</h1>
+            <p class="muted">Signed in as Admin</p>
+        </div>
+    </div>
+    <nav class="primary-nav">
+        <a href="#login">Login</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#announcements">Announcements</a>
+        <a href="#subjects">Subjects</a>
+        <a href="#grades">Grades</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#support">Support</a>
+    </nav>
+</header>
+
+<main class="portal-main">
+    <section id="login" class="panel form-panel">
+        <h2>Secure Login</h2>
+        <form class="login-form" onsubmit="loginSubmit(event)">
+            <label>
+                Full Name (for first-time login)
+                <input type="text" name="full_name" placeholder="Juan Dela Cruz">
+            </label>
+            <label>
+                Student Email
+                <input type="email" name="student_email" placeholder="you@campus.edu" required>
+            </label>
+            <label>
+                Password
+                <input type="password" name="password" placeholder="••••••••" required>
+            </label>
+            <div class="form-meta">
+                <label class="checkbox">
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn solid full">Sign in</button>
+        </form>
+    </section>
+
+    <section id="dashboard" class="panel">
+        <h2>Dashboard Snapshot</h2>
+        <div class="stats-grid">
+            <article>
+                <small>Current Term</small>
+                <strong>2nd Sem AY 24-25</strong>
+            </article>
+            <article>
+                <small>Units Enrolled</small>
+                <strong>8</strong>
+            </article>
+            <article>
+                <small>Pending Tasks</small>
+                <strong>0</strong>
+            </article>
+            <article>
+                <small>Support Tickets</small>
+                <strong>0 open</strong>
+            </article>
+        </div>
+    </section>
+
+    <section id="announcements" class="panel">
+        <div class="panel-head">
+            <h2>Announcements</h2>
+            <a href="#">View all</a>
+        </div>
+        <div class="list">
+            <article>
+                <p class="eyebrow">december 4</p>
+                <h3>PSU Intramural</h3>
+                <p>Wear A Red Na Damit and 4pm .</p>
+            </article>
+            <article>
+                <p class="eyebrow">Dec 5</p>
+                <h3>Registrar</h3>
+                <p>Document requests will be processed in the Lingayen Plaza , 9:00 AM - 3:00 PM.</p>
+            </article>
+            <article>
+                <p class="eyebrow">December 25</p>
+                <h3>Power Interruption Advisory</h3>
+                <p>Cenpelco Announced power interruption for transformer maintenance.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="subjects" class="panel">
+        <div class="panel-head">
+            <h2>Subjects</h2>
+            <a href="#">Checklist</a>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Subject</th>
+                        <th>Units</th>
+                        <th>Professor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IT401</td>
+                        <td>Capstone Project 2</td>
+                        <td>3</td>
+                        <td>Sir Carlo</td>
+                    </tr>
+                    <tr>
+                        <td>IT432</td>
+                        <td>Mobile App Development</td>
+                        <td>3</td>
+                        <td>Prof. Lewis</td>
+                    </tr>
+                    <tr>
+                        <td>GE108</td>
+                        <td>Ethics &amp; Leadership</td>
+                        <td>2</td>
+                        <td>Dr. San Andres</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="grades" class="panel">
+        <div class="panel-head">
+            <h2>Grades</h2>
+            <a href="#">Download card</a>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Midterm</th>
+                        <th>Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IT401</td>
+                        <td>1.50</td>
+                        <td>1.25</td>
+                    </tr>
+                    <tr>
+                        <td>IT432</td>
+                        <td>1.75</td>
+                        <td>1.50</td>
+                    </tr>
+                    <tr>
+                        <td>GE108</td>
+                        <td>1.25</td>
+                        <td>1.25</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="schedule" class="panel">
+        <div class="panel-head">
+            <h2>Weekly Schedule</h2>
+            <a href="#">Sync calendar</a>
+        </div>
+        <div class="list compact">
+            <article>
+                <strong>Mon</strong>
+                <div>
+                    <p>IT401 · 08:00 - 09:30</p>
+                    <small>Com Lab</small>
+                </div>
+            </article>
+            <article>
+                <strong>Wed</strong>
+                <div>
+                    <p>IT432 · 10:00 - 12:00</p>
+                    <small>Lab 3</small>
+                </div>
+            </article>
+            <article>
+                <strong>Fri</strong>
+                <div>
+                    <p>GE108 · 13:00 - 15:00</p>
+                    <small>Room it rooom 4</small>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="support" class="panel form-panel">
+        <h2>Support Request</h2>
+        <form class="support-form" onsubmit="supportSubmit(event)">
+            <label>
+                Full Name
+                <input type="text" name="full-name" placeholder="Juan Dela Cruz" required>
+            </label>
+            <label>
+                Email
+                <input type="email" name="email" placeholder="you@campus.edu" required>
+            </label>
+            <label>
+                Concern
+                <select name="concern" required>
+                    <option value="">Select a topic</option>
+                    <option value="enrollment">Enrollment</option>
+                    <option value="it">IT Support</option>
+                    <option value="finance">Finance</option>
+                    <option value="other">Other</option>
+                </select>
+            </label>
+            <label>
+                Details
+                <textarea name="message" rows="4" placeholder="Tell us more..." required></textarea>
+            </label>
+            <button type="submit" class="btn solid full">Send ticket</button>
+        </form>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <span>&copy; 2025 CampusConnect</span>
+    <span class="muted">Group 7 - BSIT IV - E</span>
+</footer>
+
+<script>
+function loginSubmit(e) {
+    e.preventDefault();
+    alert('Login form submitted! (Static demo only)');
+}
+function supportSubmit(e) {
+    e.preventDefault();
+    alert('Support ticket sent! (Static demo only)');
+}
+</script>
+
+</body>
+</html>
