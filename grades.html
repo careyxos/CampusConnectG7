@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Grades - CampusConnect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* REUSING CSS VARIABLES FROM INDEX.HTML */
+        :root { --primary: #0ea5a5; --bg-dark: #0d1b2a; --bg-light: #f3f6f9; --card-bg: #fff; --text-main: #1f2937; --border: #e5e7eb; --radius: 12px; --max-width: 1200px; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-main); }
+        
+        /* Header & Layout Structure (Simplified for brevity) */
+        .portal-header { background: var(--bg-dark); color: white; padding: 1rem; position: sticky; top: 0; z-index: 10; }
+        .header-content { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .brand h1 { font-size: 1.2rem; margin: 0; }
+        .back-link { color: white; text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
+        
+        .portal-main { max-width: var(--max-width); margin: 2rem auto; padding: 0 1rem; }
+        .panel { background: var(--card-bg); padding: 2rem; border-radius: var(--radius); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+
+        /* Calculator Specific Styles */
+        .grade-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+        .gwa-badge { background: var(--bg-dark); color: white; padding: 10px 20px; border-radius: 50px; font-weight: 700; font-size: 1.2rem; }
+        .gwa-badge span { color: var(--primary); }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+        th { text-align: left; padding: 12px; border-bottom: 2px solid var(--border); color: #6b7280; font-size: 0.85rem; text-transform: uppercase; }
+        td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+        
+        /* Input Styles within Table */
+        .grade-input { width: 80px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; text-align: center; font-weight: 600; }
+        .units-input { width: 60px; padding: 8px; background: #f9fafb; border: 1px solid var(--border); border-radius: 6px; text-align: center; }
+        
+        .action-btn { background: #fee2e2; color: #dc2626; border: none; padding: 8px; border-radius: 6px; cursor: pointer; }
+        .add-btn { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+
+        @media(max-width: 600px) {
+            .gwa-badge { width: 100%; text-align: center; }
+            td, th { padding: 8px 4px; font-size: 0.9rem; }
+            .grade-input, .units-input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="portal-header">
+        <div class="header-content">
+            <div class="brand">
+                <h1>CampusConnect Grades</h1>
+            </div>
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+        </div>
+    </header>
+
+    <main class="portal-main">
+        <section class="panel">
+            <div class="grade-header">
+                <div>
+                    <h2 style="margin:0">Grade Calculator</h2>
+                    <p style="margin:5px 0 0; color:#6b7280">Enter your grades to simulate your GWA.</p>
+                </div>
+                <div class="gwa-badge">
+                    GWA: <span id="gwaDisplay">0.00</span>
+                </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table id="gradeTable">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Units</th>
+                            <th>Grade</th>
+                            <th style="text-align:center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" value="Capstone Project 2" style="width:100%; border:none; outline:none;"></td>
+                            <td><input type="number" class="units-input" value="3" oninput="calculateGWA()"></td>
+                            <td><input type="number" class="grade-input" placeholder="1.0" step="0.25" oninput="calculateGWA()"></td>
+                            <td style="text-align:center"><button class="action-btn" onclick="deleteRow(this)"><i class="fa-solid fa-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" value="Mobile App Dev" style="width:100%; border:none; outline:none;"></td>
+                            <td><input type="number" class="units-input" value="3" oninput="calculateGWA()"></td>
+                            <td><input type="number" class="grade-input" placeholder="1.0" step="0.25" oninput="calculateGWA()"></td>
+                            <td style="text-align:center"><button class="action-btn" onclick="deleteRow(this)"><i class="fa-solid fa-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" value="Ethics" style="width:100%; border:none; outline:none;"></td>
+                            <td><input type="number" class="units-input" value="2" oninput="calculateGWA()"></td>
+                            <td><input type="number" class="grade-input" placeholder="1.0" step="0.25" oninput="calculateGWA()"></td>
+                            <td style="text-align:center"><button class="action-btn" onclick="deleteRow(this)"><i class="fa-solid fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="add-btn" onclick="addRow()"><i class="fa-solid fa-plus"></i> Add Subject</button>
+        </section>
+    </main>
+
+    <script>
+        function calculateGWA() {
+            let totalUnits = 0;
+            let totalWeightedGrades = 0;
+            const rows = document.querySelectorAll('#gradeTable tbody tr');
+
+            rows.forEach(row => {
+                const units = parseFloat(row.querySelector('.units-input').value) || 0;
+                const grade = parseFloat(row.querySelector('.grade-input').value) || 0;
+
+                if (units > 0 && grade > 0) {
+                    totalUnits += units;
+                    totalWeightedGrades += (units * grade);
+                }
+            });
+
+            const gwa = totalUnits > 0 ? (totalWeightedGrades / totalUnits).toFixed(2) : "0.00";
+            document.getElementById('gwaDisplay').innerText = gwa;
+        }
+
+        function deleteRow(btn) {
+            const row = btn.closest('tr');
+            row.remove();
+            calculateGWA();
+        }
+
+        function addRow() {
+            const tbody = document.querySelector('#gradeTable tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td><input type="text" placeholder="Subject Name" style="width:100%; border:none; outline:none;"></td>
+                <td><input type="number" class="units-input" value="3" oninput="calculateGWA()"></td>
+                <td><input type="number" class="grade-input" placeholder="0.0" step="0.25" oninput="calculateGWA()"></td>
+                <td style="text-align:center"><button class="action-btn" onclick="deleteRow(this)"><i class="fa-solid fa-trash"></i></button></td>
+            `;
+            tbody.appendChild(newRow);
+        }
+    </script>
+</body>
+</html>
